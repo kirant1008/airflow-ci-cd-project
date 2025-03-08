@@ -39,7 +39,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
       - ./env/:/opt/airflow/env
-      - .logs:/opt/airflow/logs
+      - ./logs:/opt/airflow/logs
     environment:
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
     depends_on:

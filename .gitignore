@@ -38,7 +38,7 @@ npm-debug.log
 /build
 /env
 /postgres-data
-/logs
 /.logs
+/logs
 *.tar.gz
 *.zip
