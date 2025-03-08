@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+
+  airflow-webserver:
+    image: myrepo/airflow-etl:latest
+    container_name: airflow-webserver
+    restart: always
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./env/:/opt/airflow/env
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+    ports:
+      - "8080:8080"
+
+  airflow-scheduler:
+    image: myrepo/airflow-etl:latest
+    container_name: airflow-scheduler
+    restart: always
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+      - ./env/:/opt/airflow/env
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+    depends_on:
+      - airflow-webserver
+
+  flower:
+    image: myrepo/airflow-etl:latest
+    container_name: flower
+    restart: always
+    ports:
+      - "5555:5555"

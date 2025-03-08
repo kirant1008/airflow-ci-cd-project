@@ -1,0 +1,41 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Ignore node_modules
+node_modules/
+npm-debug.log
+
+# Ignore compiled binaries
+*.out
+*.o
+*.class
+*.exe
+
+# Ignore IDE/project-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore environment-specific files
+.env
+*.config.local
+
+# Ignore build artifacts
+/dist
+/build
+/env
+*.tar.gz
+*.zip

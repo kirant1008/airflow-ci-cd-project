@@ -1,0 +1,9 @@
+apache-airflow
+apache-airflow-providers-postgres
+apache-airflow-providers-amazon
+psycopg2-binary
+redis
+celery
+pandas
+numpy
+praw
