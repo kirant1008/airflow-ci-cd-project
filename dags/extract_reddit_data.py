@@ -29,7 +29,7 @@ def extract_data(keyword):
 
 default_args = {'start_date':datetime(2025,1,1)}
 
-with DAG("extract_data", default_args=default_args) as dag:
+with DAG("extract_data", default_args=default_args, schedule_interval=None, catchup=False) as dag:
 
     keywords = ["ProductReviews", "amazonreviews"]
     extract_tasks = []
@@ -40,13 +40,6 @@ with DAG("extract_data", default_args=default_args) as dag:
             python_callable = extract_data,
             op_args = [keyword]
         )
-        extract_tasks.append(task)
-
-    trigger_transform = TriggerDagRunOperator(
-        task_id = "trigger_transform_data",
-        trigger_dag_id = "transform_data",
-        conf = {"parent_task_id": "extract_data"},
-        dag = dag
-    )
+    extract_tasks.append(task)
 
 
